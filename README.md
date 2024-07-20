@@ -6,7 +6,7 @@
 
 ### Preface
 
-Apple has released the first Public Beta and the third Developer Beta of macOS 15 Sequoia. Its installation is less problematic than previous versions of macOS that required deeper changes to OpenCore and kexts. This time, few changes have been necessary to make them compatible. The system works surprisingly well for being in such an early stage of development. Of course, there are things to polish but, in general, it is very usable even for daily use although it is not recommended in production environments. The specifications of my machine are: Z390 Aorus Elite + i9-9900K + RX 6600 XT.
+Apple has released the first Public Beta and the third Developer Beta of macOS 15 Sequoia. Its installation is less problematic than previous versions of macOS that required deeper changes to OpenCore and kexts. This time, few changes have been necessary to make them compatible. The system works surprisingly well for being in such an early stage of development. Of course, there are things to polish but, in general, it is very usable even for daily use although it is not recommended in production environments.
 
 ---
 

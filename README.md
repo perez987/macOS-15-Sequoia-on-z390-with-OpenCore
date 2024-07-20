@@ -1,6 +1,55 @@
-# Install macOS 15 Sequoia beta on Z390 with RX 6600 XT
+# macOS 15 Sequoia beta on Z390 using OpenCore
+
+<p align="center">
+<img width="256" src="img/Sequoia icon.png">
+</p>
+
+### Preface
 
 Apple has released the first Public Beta and the third Developer Beta of macOS 15 Sequoia. Its installation is less problematic than previous versions of macOS that required deeper changes to OpenCore and kexts. This time, few changes have been necessary to make them compatible. The system works surprisingly well for being in such an early stage of development. Of course, there are things to polish but, in general, it is very usable even for daily use although it is not recommended in production environments. The specifications of my machine are: Z390 Aorus Elite + i9-9900K + RX 6600 XT.
+
+---
+
+### Hardware
+
+* Motherboard Gigabyte Z390 Aorus Elite
+* CPU Intel i9-9900K
+* GPUs: iGPU Intel UHD 630 / AMD Radeon RX 6600 XT
+* Audio Realtek ALC1220
+* Ethernet Intel I219V7
+* Wi-Fi + BT Fenvi FV-T919 (BCM94360CD).
+
+### BIOS settings (F11 version)
+
+* CSM: Disabled (mandatory)
+* VT-d: Disabled
+* Platform Power Management: Disabled
+* XHCI Hand-Off: Enabled
+* Network Stack: Disabled
+* Wake on LAN: Disabled
+* Initial Display Output: PCIe 1 Slot
+* Integrated Graphics: Enabled
+* DVMT Pre-allocated: 256M o higher
+* Above 4G Decoding: Enabled
+* CFG Lock: Disabled (mandatory)
+* Fast Boot: Disabled
+* OS Type: Windows 8/10
+* Secure Boot: Disabled.
+
+### What works well?
+
+* dGPU AMD as main card
+* iGPU *headless mode*
+* Shutdown and restart
+* Ethernet
+* Sound (also HDMI)
+* USB ports (USB port map for this board)
+* Bluetooth Fenvi T919.
+
+### What's not working?
+
+* Fenvi T919 Wi-Fi: It needs a fix, still in the development phase, created by the OCLP team
+* Sleep: It doesn't always work as it should, sometimes it goes to sleep properly and other times the screen goes black but the PC stays on.
 
 ---
 
@@ -76,6 +125,55 @@ Other extensions may be the most recent official versions.
 
 ---
 
+### config.plist
+
+I get best results with iMac19.1 SMBIOS and the iGPU enabled in BIOS. These are the main details when configuring config.plist.
+
+- ACPI: SSDT-EC-USBX.aml, SSDT-PLUG.aml and SSDT-PMC.aml. SSDT-AWAC.aml is not required on my system but, if in doubt, add it because it does not cause any harm if it is present without being needed
+- ACPI >> Quirks: all = False
+
+- Booter >> Quirks: AvoidRuntimeDefrag, DevirtualiseMmio, ProtectUefiServices, ProvideCustomSlide, RebuildAppleMemoryMap, SetupVirtualMap and SyncRuntimePermissions = True
+- Booter >> ResizeAppleGpuBars=-1
+
+- DeviceProperties >> Add
+	- PciRoot(0x0)/Pci(0x2,0x0)
+		- AAPL,ig-platform-id | Data | 0300913E
+		- device-id | Data | 9B3E0000
+		- enable-metal | Data | 01000000
+		- rps-control | Data | 01000000
+	- PciRoot(0x0)/Pci(0x1.0x0)/Pci(0x0.0x0)/Pci(0x0.0x0)/Pci(0x0.0x0)
+		- unfairgva | Number | 6
+	- PciRoot(0x0)/Pci(0x1F,0x3)
+		- layout-id | Data | 07000000
+	- PciRoot(0x0)/Pci(0x14,0x0)
+		- acpi-wake-type | Data | 01
+		- acpi-wake-gpe | Data | 6D
+
+- Kernel > Add: Sequoia compatible kexts, Lilu.kext in the first place, UTBMap.kext specific for this motherboard
+- Kernel >> Quirks: CustomSMBIOSGuid, DisableIoMapper, DisableIoMapperMapping, DisableLinkeditJettison, PanicNoKextDump and PowerTimeoutKernelPanic = True
+- Kernel >> Quirks: SetApfsTrimTimeout = 0
+
+- Misc >> Boot: HibernateMode=None, PickerAttributes=144, ShowPicker=True
+- Misc >> Debug: AppleDebug, ApplePanic and DisableWatchDog = True, Target=3
+- Misc >> Security: AllowSetDefault=True, BlacklistAppleUpdate=True, ExposeSensitiveData=6, SecureBootModel=x86legacy
+
+- NVRAM
+	- WriteFlash=True
+	- Add >> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
+		- boot-args >> agdpmod=pikera
+		- csr-active-config >> 00000000
+		- run-efi-updater >> No
+	- Delete >> 7C436110-AB2A-4BBB-A880-FE41995C9F82:
+		- boot-args and csr-active-config
+
+- PlatformInfo
+	- Generic >> iMac19.1
+	- UpdateDataHub, UpdateNVRAM and UpdateSMBIOS = True
+	- UpdateSMBIOSMode >> Custom
+
+- UEFI >> Quirks: EnableVectorAcceleration and RequestBootVarRouting = True
+- UEFI >> Quirks >> ResizeGpuBars=-1.
+
 ### Updates Notification 
 
 Only SMBIOS iMac19.1 model that lacks T2 security chip receives notifications of new updates in System Settings. Rest of the models that have T2 chip are only notified if you add:
@@ -123,3 +221,4 @@ Other settings are as before.
 
 [Download link ](https://perez987.es/wp-content/uploads/2024/07/EFI-15-1.1.0.zip)
 <br>(folder is too big to be included in the GitHub repo).
+

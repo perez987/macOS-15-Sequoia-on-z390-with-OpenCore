@@ -120,3 +120,6 @@ Other settings are as before.
 - No wifi
 - Fenvi Wi-Fi
 - Intel Wi-Fi / Bluetooth.
+
+[Download link ](https://perez987.es/wp-content/uploads/2024/07/EFI-15-1.1.0.zip)
+<br>(folder is too big to be included in the GitHub).

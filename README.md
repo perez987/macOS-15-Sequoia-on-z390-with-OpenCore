@@ -1,7 +1,7 @@
 # macOS 15 Sequoia beta on Z390 using OpenCore
 
 <p align="center">
-<img width="256" src="img/Sequoia icon.png">
+<img width="128" src="img/Sequoia icon.png">
 </p>
 
 ### Preface

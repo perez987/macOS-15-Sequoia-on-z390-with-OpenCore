@@ -199,6 +199,8 @@ You can try the same settings that work in macOS Sonoma. Except for kext version
 - Heliport (used in conjunction with itlwm) has also been updated to version 1.5.0 alpha which seems to work fine on Sequoia.
 - Regarding Bluetooth, latest version 2.4.0 works fine on Sequoia.
 
+[Intel AX210 wifi6 on macOS Sonoma](https://github.com/perez987/Intel-AX210-wifi6-on-macOS-Sonoma)
+
 ---
 
 ### Fenvi and Broadcom Wi-Fi
@@ -209,7 +211,7 @@ OCLP developers have released a beta version that works on Sequoia, it is differ
 - Grab IOSkyWalkFamily version 1.1.0 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi)
 - Grab OCLP beta version 1.6.0 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/actions/runs/9953580191) (OpenCore-Patcher.pkg)
 
-Other settings are as before. 
+Other settings are as before: [Broadcom wifi back on macOS Sonoma with OCLP](https://github.com/perez987/Broadcom-wifi-back-on-macOS-Sonoma-with-OCLP). 
 
 ---
 

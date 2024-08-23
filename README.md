@@ -212,15 +212,3 @@ OCLP developers have released a beta version that works on Sequoia, it is differ
 - Grab OCLP beta version 1.6.0 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/actions/runs/9953580191) (OpenCore-Patcher.pkg)
 
 Other settings are as before: [Broadcom wifi back on macOS Sonoma with OCLP](https://github.com/perez987/Broadcom-wifi-back-on-macOS-Sonoma-with-OCLP). 
-
----
-
-### EFI folder with 3 config.plist
-
-- No wifi
-- Fenvi Wi-Fi
-- Intel Wi-Fi / Bluetooth.
-
-[Download link ](https://perez987.es/wp-content/uploads/2024/07/EFI-15-1.1.0.zip)
-<br>(folder is too big to be included in the GitHub repo).
-

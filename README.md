@@ -195,11 +195,11 @@ You can try the same settings that work in macOS Sonoma. Except for kext version
 
 ### Intel Wi-Fi and Bluetooth
 
-- AirportItlwm does not work on Sequoia. itlwm does. You need version 2.4.0.
+- AirportItlwm does not work on Sequoia. itlwm does. Latest version is 2.3.0.
 - Heliport (used in conjunction with itlwm) has also been updated to version 1.5.0 alpha which seems to work fine on Sequoia.
 - Regarding Bluetooth, latest version 2.4.0 works fine on Sequoia.
 
-[Intel AX210 wifi6 on macOS Sonoma](https://github.com/perez987/Intel-AX210-wifi6-on-macOS-Sonoma)
+Extended instructions:: [Intel AX210 wifi6 on macOS Sonoma](https://github.com/perez987/Intel-AX210-wifi6-on-macOS-Sonoma)
 
 ---
 

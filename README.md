@@ -4,12 +4,6 @@
 <img width="128" src="img/Sequoia icon.png">
 </p>
 
-### Preface
-
-Apple has released the first Public Beta and the third Developer Beta of macOS 15 Sequoia. Its installation is less problematic than previous versions of macOS that required deeper changes to OpenCore and kexts. This time, few changes have been necessary to make them compatible. The system works surprisingly well for being in such an early stage of development. Of course, there are things to polish but, in general, it is very usable even for daily use although it is not recommended in production environments.
-
----
-
 ### Hardware
 
 * Motherboard Gigabyte Z390 Aorus Elite
@@ -49,7 +43,7 @@ Apple has released the first Public Beta and the third Developer Beta of macOS 1
 ### What's not working?
 
 * Fenvi T919 Wi-Fi: It needs a fix, still in the development phase, created by the OCLP team
-* Sleep: It doesn't always work as it should, sometimes it goes to sleep properly and other times the screen goes black but the PC stays on.
+* Sleep: It doesn't always work as it should, sometimes it goes to sleep properly and other times the PC stays on.
 
 ---
 
@@ -70,58 +64,22 @@ All supported models except iMac19,1 (2019 iMac) have a T2 security chip, this i
 
 ---
 
-### Get macOS 15 Sequoia beta
-
-Since the release of macOS 15 Public Beta it is easy to participate in the testing program. If you have macOS Ventura 13.4 or later:
-
-- Go to the [Free Apple Beta Software Program](https://beta.apple.com/) site
-- Sign in with your Apple account -> Get Started -> Enroll your Mac
-- Go to Software Update -> Beta Updates
-- Open the drop-down menu and choose macOS Sequoia Public Beta
-- Download the package
-- macOS 15 Beta Installer app is saved in the Applications folder.
-
-Note: Apple account on your Mac must match the one in the beta program.
-
-<img src="img/Betaupdates.png" width="660px">
-
-This is the easiest way to get macOS 15.
-
-There is another way which is to download the full installation package, it is not necessary to access the Apple beta program. There are free applications that are well known and tested enough to download macOS 15 Beta Installer, these are just 2 of them:
-
-- [GibMacOS](https://github.com/corpnewt/gibMacOS) (Terminal application)
-- [Mist](https://github.com/ninxsoft/Mist) (graphical application that can also create the installation USB device).
-
-From here you can update the current system or create an installation USB device to install Sequoia from scratch. This task is sufficiently described on the Internet, here is a simple reminder:
-
-- Get a USB device with at least 16 GB (preferably 32)
-- Prepare the device with Disk Utility:
-- Name: USB
-- Partition scheme: GUID
-- Format: MacOS Extended Journaled
-- Open Terminal and run `sudo /Applications/Install\ macOS\ Sequoia\ Beta.app/Contents/Resources/createinstallmedia --volume /Volumes/USB /Applications/Install\ macOS\ Sequoia\ Beta.app --nointeraction`
-- When finished, the USB device is named Install macOS Sequoia Beta
-- Prepare OpenCore on the EFI partition of the USB device.
-- You can now boot from this device and install macOS from scratch.
-
----
-
 ### OpenCore 1.0.0 (same as Sonoma) 
 
 Most of the OpenCore settings that were valid for Sonoma are also valid for Ventura. Main differences are in the versions of some kexts (not all of them are used on my hardware):
 
-- Lilu 1.6.8 beta (if you use Lilu 1.6.7 you have to add `-lilubetaall` in boot args)
-- AirportBrcmFixup 2.1.9 beta
-- CPUFriend 1.2.8 beta
-- CpuTscSync 1.1.1 beta
+- Lilu 1.6.8 (if you use Lilu 1.6.7 you have to add `-lilubetaall` in boot args)
+- AirportBrcmFixup 2.1.9 beta (you need `-btlfxbeta` in boot args)
+- CPUFriend 1.2.8
+- CpuTscSync 1.1.1
 - ECEnabler 1.0.5
-- HibernationFixup 1.5.1 beta
-- IntelBluetoothFirmware 2.5.0 beta
-- RestrictEvents 1.1.3 or 1.1.4 beta (with both you need `-revbeta` in boot args)
-- VoodooInput 1.1.5 beta
-- WhateverGreen 1.3.7 beta.
+- HibernationFixup 1.5.1
+- IntelBluetoothFirmware 2.5.0
+- RestrictEvents 1.1.3 (you need `-revbeta` in boot args) or 1.1.4 
+- VoodooInput 1.1.5
+- WhateverGreen 1.3.7.
 
-Other extensions may be the most recent official versions. 
+Other extensions may be the most recent official versions.
 
 ---
 
@@ -179,7 +137,7 @@ I get best results with iMac19.1 SMBIOS and the iGPU enabled in BIOS. These are 
 Only SMBIOS iMac19.1 model that lacks T2 security chip receives notifications of new updates in System Settings. Rest of the models that have T2 chip are only notified if you add:
 
 - RestrictEvents.kext
-- `-revbeta revpatch=sbvmm `in boot args: it makes macOS believe that it is in a virtual machine and it does not matter which SMBIOS model has a T2 chip. 
+- `revpatch=sbvmm `in boot args: it makes macOS believe that it is in a virtual machine and it does not matter which SMBIOS model has a T2 chip. 
 
 These settings can be disabled for daily use of the system but you have to re-enable them when you want to be notified of new updates. Another option is to download the full installer package each time, bypassing this limitation but they are large packages of around 15 GB so they are not practical for those who have to update a lot of computers at a time. 
 
@@ -208,7 +166,7 @@ Extended instructions:: [Intel AX210 wifi6 on macOS Sonoma](https://github.com/p
 OCLP developers have released a beta version that works on Sequoia, it is different from the one we were using on Sonoma.
 
 - Grab AMFIPass version 1.4.1 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Acidanthera)
-- Grab IOSkyWalkFamily version 1.1.0 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi)
-- Grab OCLP beta version 1.6.0 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/actions/runs/9953580191) (OpenCore-Patcher.pkg)
+- Grab IOSkyWalkFamily version 1.2.0 from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi)
+- Grab OCLP beta version 1.6.0 or newer from [here](https://github.com/dortania/OpenCore-Legacy-Patcher/actions/runs/9953580191) (OpenCore-Patcher.pkg).
 
 Other settings are as before: [Broadcom wifi back on macOS Sonoma with OCLP](https://github.com/perez987/Broadcom-wifi-back-on-macOS-Sonoma-with-OCLP). 

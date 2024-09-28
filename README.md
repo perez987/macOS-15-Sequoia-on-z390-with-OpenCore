@@ -141,8 +141,6 @@ Only SMBIOS iMac19.1 model that lacks T2 security chip receives notifications of
 
 These settings can be disabled for daily use of the system but you have to re-enable them when you want to be notified of new updates. Another option is to download the full installer package each time, bypassing this limitation but they are large packages of around 15 GB so they are not practical for those who have to update a lot of computers at a time. 
 
-<img src="img/RestrictEvents.png " width="660px">
-
 ---
 
 ### EFI folder settings

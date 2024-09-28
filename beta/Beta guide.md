@@ -11,7 +11,7 @@ Since the release of macOS 15 Public Beta it is easy to participate in the testi
 
 Note: Apple account on your Mac must match the one in the beta program.
 
-<img src="img/Betaupdates.png" width="660px">
+<img src="../img/Betaupdates.png" width="660px">
 
 This is the easiest way to get macOS 15.
 

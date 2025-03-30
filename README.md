@@ -166,6 +166,6 @@ OCLP developers have released a beta version that works on Sequoia, it is differ
 - Grab AMFIPass version 1.4.1 from [Acidanthera](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Acidanthera)
 - Grab IOSkyWalkFamily version 1.2.0 from [Acidanthera](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi)
 - Grab IO80211FamilyLegacy.kext 1.0.0 from [Acidanthera](https://github.com/dortania/OpenCore-Legacy-Patcher/tree/main/payloads/Kexts/Wifi)
-- Grab OCLP beta version 1.6.0 or newer from [OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher/releases)) (OpenCore-Patcher.pkg).
+- Grab OCLP beta version 1.6.0 or newer from [OCLP](https://github.com/dortania/OpenCore-Legacy-Patcher/releases) (OpenCore-Patcher.pkg).
 
-Other settings are as before: [Fenvi wifi back on macOS Sonoma with OCLP](https://github.com/perez987/Fenvi-T919-wifi-back-on-macOS-Sonoma-with-OCLP)). 
+Other settings are as before: [Fenvi wifi back on macOS Sonoma with OCLP](https://github.com/perez987/Fenvi-T919-wifi-back-on-macOS-Sonoma-with-OCLP). 
